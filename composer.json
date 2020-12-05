@@ -1,0 +1,50 @@
+{
+	"name": "evoweb/packing-list",
+	"type": "typo3-cms-extension",
+	"description": "Plan your packing list for the next hike and fiddle around with different load outs",
+	"homepage": "http://www.evoweb.de",
+
+	"license": "GPL-2.0-or-later",
+
+	"support" : {
+		"docs": "https://docs.typo3.org/p/evoweb/packing_list/master/en-us/",
+		"issues" : "https://github.com/evoWeb/packing_list/issues"
+	},
+
+	"keywords": [
+		"TYPO3 CMS",
+		"extbase",
+		"extending",
+		"domain models"
+	],
+
+	"require": {
+		"typo3/cms-core": "^10.4.0"
+	},
+
+	"autoload": {
+		"psr-4": {
+			"Evoweb\\PackingList\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Evoweb\\PackingList\\Tests\\": "Tests/"
+		}
+	},
+
+	"config": {
+		"vendor-dir": ".Build/Web/vendor"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "packing_list",
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/Web"
+		}
+	},
+
+	"scripts": {
+		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/packing_list"
+	}
+}
