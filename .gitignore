@@ -1,0 +1,7 @@
+.idea
+.Build/Web/
+.Build/node_modules/
+.Build/yarn.lock
+var/
+composer.*
+!composer.json
