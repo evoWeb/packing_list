@@ -1,7 +1,7 @@
-mod.wizards.newContentElement.wizardItems.forms {
+mod.wizards.newContentElement.wizardItems.special {
   elements {
     packinglist_list {
-      iconIdentifier = content-elements-list
+      iconIdentifier = content-listgroup
       title = LLL:EXT:packing_list/Resources/Private/Language/Database.xlf:tt_content.CType.packinglist_list.title
       description = LLL:EXT:packing_list/Resources/Private/Language/Database.xlf:tt_content.CType.packinglist_list.description
       tt_content_defValues {

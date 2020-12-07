@@ -15,13 +15,12 @@ namespace Evoweb\PackingList\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 class ListController extends ActionController
 {
-    public function listAction(): Response
+    public function listAction(): string
     {
-        return new Response($this->view->render());
+        return $this->view->render();
     }
 }

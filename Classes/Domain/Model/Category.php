@@ -15,16 +15,20 @@ namespace Evoweb\PackingList\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-class Shelf extends AbstractEntity
+class Category extends AbstractEntity
 {
     /**
-     * @var FrontendUser|null
+     * @var string
      */
-    protected ?FrontendUser $owner;
+    protected string $name = '';
+
+    /**
+     * @var Listing|null
+     */
+    protected ?Listing $listing;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Listitem>
@@ -32,13 +36,15 @@ class Shelf extends AbstractEntity
     protected ObjectStorage $listItems;
 
     /**
-     * Constructs a new Shelf
+     * Constructs a new Category
      *
-     * @param FrontendUser|null $owner
+     * @param string $name
+     * @param Listing|null $listing
      */
-    public function __construct(FrontendUser $owner = null)
+    public function __construct(string $name = '', Listing $listing = null)
     {
-        $this->owner = $owner;
+        $this->name = $name;
+        $this->listing = $listing;
         $this->listItems = new ObjectStorage();
     }
 
@@ -48,19 +54,35 @@ class Shelf extends AbstractEntity
     }
 
     /**
-     * @return FrontendUser
+     * @return string
      */
-    public function getOwner(): ?FrontendUser
+    public function getName(): string
     {
-        return $this->owner;
+        return $this->name;
     }
 
     /**
-     * @param FrontendUser $owner
+     * @param string $name
      */
-    public function setOwner(FrontendUser $owner)
+    public function setName(string $name)
     {
-        $this->owner = $owner;
+        $this->name = $name;
+    }
+
+    /**
+     * @return Listing
+     */
+    public function getListing(): ?Listing
+    {
+        return $this->listing;
+    }
+
+    /**
+     * @param Listing $listing
+     */
+    public function setListing(Listing $listing)
+    {
+        $this->listing = $listing;
     }
 
     /**
