@@ -29,11 +29,11 @@ CREATE TABLE tx_packinglist_domain_model_listitem
     category    int(10) unsigned     DEFAULT '0' NOT NULL,
     shelf       int(10) unsigned     DEFAULT '0' NOT NULL,
     description text,
-    quantity    int(10) unsigned     DEFAULT '0' NOT NULL,
-    weight      int(10) unsigned     DEFAULT '0' NOT NULL,
-    unit        varchar(255)         DEFAULT ''  NOT NULL,
     url         text,
-    price       float                DEFAULT '0' NOT NULL,
+    weight      float(4, 4) unsigned DEFAULT '0' NOT NULL,
+    unit        varchar(255)         DEFAULT ''  NOT NULL,
+    quantity    int(10) unsigned     DEFAULT '0' NOT NULL,
+    price       float(4, 4) unsigned DEFAULT '0' NOT NULL,
     worn        smallint(5) unsigned DEFAULT '0' NOT NULL,
     consumable  smallint(5) unsigned DEFAULT '0' NOT NULL
 );

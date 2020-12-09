@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+	<file t3:id="1607274967" source-language="en" datatype="plaintext" original="EXT:packing_list/Resources/Private/Language/locallang.xlf" date="2020-12-06T18:16:32Z" product-name="packing_list">
+		<header/>
+		<body>
+			<trans-unit id="unsorted_items">
+				<source>Unsorted Items</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

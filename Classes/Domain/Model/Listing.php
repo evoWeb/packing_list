@@ -27,17 +27,19 @@ class Listing extends AbstractEntity
     protected string $name = '';
 
     /**
-     * @var FrontendUser|null
+     * @var FrontendUser
      */
-    protected ?FrontendUser $owner;
+    protected $owner;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Category>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $categories;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Listitem>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $listItems;
 
@@ -96,7 +98,7 @@ class Listing extends AbstractEntity
     /**
      * @return ObjectStorage
      */
-    public function getCategories(): ObjectStorage
+    public function getCategories()
     {
         return $this->categories;
     }
@@ -128,7 +130,7 @@ class Listing extends AbstractEntity
     /**
      * @return ObjectStorage
      */
-    public function getListItems(): ObjectStorage
+    public function getListItems()
     {
         return $this->listItems;
     }

@@ -3,6 +3,16 @@
 <f:layout name="Default" />
 
 <f:section name="content">
+
+    <ul>
+    <f:if condition="{listings}">
+        <f:for each="{listings}" as="listing">
+            <li>
+                <f:link.action action="share" arguments="{listing: listing.uid}">{listing.name}</f:link.action>
+            </li>
+        </f:for>
+    </f:if>
+    </ul>
 </f:section>
 
 </html>

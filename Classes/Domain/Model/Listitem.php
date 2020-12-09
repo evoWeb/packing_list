@@ -22,7 +22,7 @@ class Listitem extends AbstractEntity
     /**
      * @var string
      */
-    protected string $name;
+    protected string $name = '';
 
     /**
      * @var Listing|null
@@ -36,48 +36,49 @@ class Listitem extends AbstractEntity
 
     /**
      * @var Shelf|null
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ?Shelf $shelf;
 
     /**
      * @var string
      */
-    protected string $description;
-
-    /**
-     * @var int
-     */
-    protected int $quantity;
-
-    /**
-     * @var int
-     */
-    protected int $weight;
+    protected string $description = '';
 
     /**
      * @var string
      */
-    protected string $unit;
-
-    /**
-     * @var string
-     */
-    protected string $url;
+    protected string $url = '';
 
     /**
      * @var float
      */
-    protected float $price;
+    protected float $weight = 0.0;
+
+    /**
+     * @var string
+     */
+    protected string $unit = 'g';
+
+    /**
+     * @var int
+     */
+    protected int $quantity = 0;
+
+    /**
+     * @var float
+     */
+    protected float $price = 0.0;
 
     /**
      * @var bool
      */
-    protected bool $worn;
+    protected bool $worn = false;
 
     /**
      * @var bool
      */
-    protected bool $consumable;
+    protected bool $consumable = false;
 
     /**
      * @return string

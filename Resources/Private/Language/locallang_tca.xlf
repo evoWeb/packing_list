@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+	<file t3:id="1607274967" source-language="en" datatype="plaintext" original="EXT:packing_list/Resources/Private/Language/locallang_tca.xlf" date="2020-12-06T18:16:32Z" product-name="packing_list">
+		<header/>
+		<body>
+			<trans-unit id="tx_packinglist_domain_model_category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_category.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_category.listing">
+				<source>Listing</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_category.list_items">
+				<source>List Items</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listing">
+				<source>Listing</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listing.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listing.owner">
+				<source>Owner</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listing.categories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listing.list_items">
+				<source>List Items</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem">
+				<source>List Item</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.listing">
+				<source>Listing</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.shelf">
+				<source>Shelf</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.url">
+				<source>Url</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.weight">
+				<source>Weight</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.unit">
+				<source>Unit</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.quantity">
+				<source>Quantity</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.price">
+				<source>Price</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.worn">
+				<source>worn</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listitem.consumable">
+				<source>consumable</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_shelf">
+				<source>Shelf</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_shelf.owner">
+				<source>Owner</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_shelf.list_items">
+				<source>List Items</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

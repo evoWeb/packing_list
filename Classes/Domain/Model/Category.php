@@ -27,11 +27,13 @@ class Category extends AbstractEntity
 
     /**
      * @var Listing|null
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ?Listing $listing;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Listitem>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $listItems;
 
@@ -41,7 +43,7 @@ class Category extends AbstractEntity
      * @param string $name
      * @param Listing|null $listing
      */
-    public function __construct(string $name = '', Listing $listing = null)
+    public function __construct(string $name = '', ?Listing $listing = null)
     {
         $this->name = $name;
         $this->listing = $listing;

@@ -23,11 +23,13 @@ class Shelf extends AbstractEntity
 {
     /**
      * @var FrontendUser|null
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ?FrontendUser $owner;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Listitem>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $listItems;
 
@@ -36,7 +38,7 @@ class Shelf extends AbstractEntity
      *
      * @param FrontendUser|null $owner
      */
-    public function __construct(FrontendUser $owner = null)
+    public function __construct(?FrontendUser $owner = null)
     {
         $this->owner = $owner;
         $this->listItems = new ObjectStorage();

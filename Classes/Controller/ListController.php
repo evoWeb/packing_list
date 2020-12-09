@@ -15,12 +15,31 @@ namespace Evoweb\PackingList\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\PackingList\Domain\Model\Listing;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Evoweb\PackingList\Domain\Repository\ListingRepository;
 
 class ListController extends ActionController
 {
+    protected ListingRepository $listingRepository;
+
+    public function __construct(
+        ListingRepository $listingRepository
+    ) {
+        $this->listingRepository = $listingRepository;
+    }
+
     public function listAction(): string
     {
+        $listings = $this->listingRepository->findAll();
+
+        $this->view->assign('listings', $listings);
+        return $this->view->render();
+    }
+
+    public function shareAction(Listing $listing): string
+    {
+        $this->view->assign('listing', $listing);
         return $this->view->render();
     }
 }

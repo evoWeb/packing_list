@@ -7,7 +7,7 @@ call_user_func(function () {
         'PackingList',
         'List',
         [
-            \Evoweb\PackingList\Controller\ListController::class => 'list,add'
+            \Evoweb\PackingList\Controller\ListController::class => 'list,share'
         ],
         [
             \Evoweb\PackingList\Controller\ListController::class => 'add,edit'
