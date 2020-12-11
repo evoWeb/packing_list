@@ -1,13 +1,16 @@
 import {src, dest} from 'gulp';
 
-const rename = require('gulp-rename');
-const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
-const cssnano = require('gulp-cssnano');
-const changed = require('gulp-changed');
-const browserSync = require('browser-sync').create();
+import sourcemaps from 'gulp-sourcemaps';
+import rename from 'gulp-rename';
+import sass from 'gulp-sass';
+import autoprefixer from 'gulp-autoprefixer';
+import cssnano from 'gulp-cssnano';
+import changed from 'gulp-changed';
+import browserSync from 'browser-sync';
 
 const { tasks } = require('../../build-config');
+
+browserSync.create();
 
 /*
 * @Desc     copy vendor css files from node_modules to src,
@@ -33,7 +36,8 @@ let copyVendorCss = () => {
 * */
 let scss = () => {
   return src(tasks.scss.src)
-    .pipe(changed(tasks.scss.src))
+    .pipe(sourcemaps.init())
+    .pipe(changed(tasks.scss.dest))
     .pipe(sass({
         includePaths: require('node-normalize-scss').includePaths
       }
@@ -46,6 +50,7 @@ let scss = () => {
       extname: '.min.css'
     }))
     .pipe(cssnano())
+    .pipe(sourcemaps.write('./'))
     .pipe(dest(tasks.scss.dest))
     .pipe(browserSync.stream());
 }

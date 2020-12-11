@@ -2,7 +2,7 @@
 
 import {parallel, series, watch} from 'gulp';
 import bundle from './Gulp/JavaScript/bundle-js';
-import babel from './Gulp/JavaScript/babel-es';
+import babel from './Gulp/JavaScript/babel-ts';
 import {browserSyncInit, browserSyncReload} from './Gulp/browserSync';
 import {copyVendorCss, scss} from './Gulp/Css/css';
 import {image, font} from './Gulp/Copy/assets';

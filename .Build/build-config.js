@@ -21,11 +21,8 @@ let tasks = {
     dest: `${paths.src}/Scss/vendor/`
   },
   babel: {
-    srcs: [
-      `${paths.src}/JavaScript/*.es6`
-    ],
-    concat: 'app.js',
-    dest: `${paths.dest}/JavaScript`
+    src: `${paths.src}/TypeScript/packing_list.ts`,
+    dest: `${paths.dest}/JavaScript/`
   },
   bundle: {
     // Add path/file to include to bundle
