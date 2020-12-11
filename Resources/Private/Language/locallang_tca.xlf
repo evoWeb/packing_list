@@ -21,6 +21,12 @@
 			<trans-unit id="tx_packinglist_domain_model_listing.name">
 				<source>Name</source>
 			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listing.public">
+				<source>public available</source>
+			</trans-unit>
+			<trans-unit id="tx_packinglist_domain_model_listing.shared">
+				<source>shared</source>
+			</trans-unit>
 			<trans-unit id="tx_packinglist_domain_model_listing.owner">
 				<source>Owner</source>
 			</trans-unit>

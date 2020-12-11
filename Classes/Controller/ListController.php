@@ -16,6 +16,9 @@ namespace Evoweb\PackingList\Controller;
  */
 
 use Evoweb\PackingList\Domain\Model\Listing;
+use Evoweb\PackingList\Utility\Cache;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Evoweb\PackingList\Domain\Repository\ListingRepository;
 
@@ -29,11 +32,17 @@ class ListController extends ActionController
         $this->listingRepository = $listingRepository;
     }
 
-    public function listAction(): string
+    public function initializeAction()
+    {
+        Cache::addCacheTagByControllerAction(['packing_list']);
+    }
+
+    public function listAction(int $currentPage = 1): string
     {
         $listings = $this->listingRepository->findAll();
 
-        $this->view->assign('listings', $listings);
+        $this->view->assignMultiple($this->preparePagination($listings->toArray(), 'listings', $currentPage));
+
         return $this->view->render();
     }
 
@@ -41,5 +50,18 @@ class ListController extends ActionController
     {
         $this->view->assign('listing', $listing);
         return $this->view->render();
+    }
+
+    protected function preparePagination(array $data, string $variableName, int $currentPage = 1): array
+    {
+        $arrayPaginator = new ArrayPaginator($data, $currentPage, $this->settings['itemsPerPage'] ?? 8);
+        $pagination = new SimplePagination($arrayPaginator);
+
+        return [
+            $variableName => $data,
+            'paginator' => $arrayPaginator,
+            'pagination' => $pagination,
+            'pages' => range(1, $pagination->getLastPageNumber()),
+        ];
     }
 }

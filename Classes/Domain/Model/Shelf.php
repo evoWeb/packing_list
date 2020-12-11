@@ -22,27 +22,16 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Shelf extends AbstractEntity
 {
     /**
-     * @var FrontendUser|null
+     * @var FrontendUser
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected ?FrontendUser $owner;
+    protected $owner;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Listitem>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $listItems;
-
-    /**
-     * Constructs a new Shelf
-     *
-     * @param FrontendUser|null $owner
-     */
-    public function __construct(?FrontendUser $owner = null)
-    {
-        $this->owner = $owner;
-        $this->listItems = new ObjectStorage();
-    }
 
     public function initializeObject()
     {
@@ -54,6 +43,9 @@ class Shelf extends AbstractEntity
      */
     public function getOwner(): ?FrontendUser
     {
+        if ($this->owner instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+            $this->owner = $this->owner->_loadRealInstance();
+        }
         return $this->owner;
     }
 

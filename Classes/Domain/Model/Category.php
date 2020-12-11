@@ -20,35 +20,19 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Category extends AbstractEntity
 {
-    /**
-     * @var string
-     */
     protected string $name = '';
 
     /**
-     * @var Listing|null
+     * @var Listing
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected ?Listing $listing;
+    protected $listing;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Listitem>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $listItems;
-
-    /**
-     * Constructs a new Category
-     *
-     * @param string $name
-     * @param Listing|null $listing
-     */
-    public function __construct(string $name = '', ?Listing $listing = null)
-    {
-        $this->name = $name;
-        $this->listing = $listing;
-        $this->listItems = new ObjectStorage();
-    }
 
     public function initializeObject()
     {
@@ -76,6 +60,9 @@ class Category extends AbstractEntity
      */
     public function getListing(): ?Listing
     {
+        if ($this->listing instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+            $this->listing = $this->listing->_loadRealInstance();
+        }
         return $this->listing;
     }
 

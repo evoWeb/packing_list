@@ -23,6 +23,8 @@ return [
             'showitem' => '
                 name,
                 owner,
+                public,
+                shared,
                 categories,
                 list_items,
             '
@@ -48,6 +50,32 @@ return [
                 'foreign_table' => 'fe_users',
                 'foreign_table_where' => 'ORDER BY fe_users.username',
                 'minitems' => 1,
+            ]
+        ],
+        'public' => [
+            'label' => $languageFile . 'tx_packinglist_domain_model_listing.public',
+            'config' => [
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
+                ],
+            ]
+        ],
+        'shared' => [
+            'label' => $languageFile . 'tx_packinglist_domain_model_listing.shared',
+            'config' => [
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
+                ],
             ]
         ],
         'categories' => [

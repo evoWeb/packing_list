@@ -19,65 +19,40 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Listitem extends AbstractEntity
 {
-    /**
-     * @var string
-     */
     protected string $name = '';
 
     /**
-     * @var Listing|null
-     */
-    protected ?Listing $listing;
-
-    /**
-     * @var Category|null
-     */
-    protected ?Category $category;
-
-    /**
-     * @var Shelf|null
+     * @var Listing
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected ?Shelf $shelf;
+    protected $listing;
 
     /**
-     * @var string
+     * @var Category
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
+    protected $category;
+
+    /**
+     * @var Shelf
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $shelf;
+
     protected string $description = '';
 
-    /**
-     * @var string
-     */
     protected string $url = '';
 
-    /**
-     * @var float
-     */
     protected float $weight = 0.0;
 
-    /**
-     * @var string
-     */
     protected string $unit = 'g';
 
-    /**
-     * @var int
-     */
     protected int $quantity = 0;
 
-    /**
-     * @var float
-     */
     protected float $price = 0.0;
 
-    /**
-     * @var bool
-     */
     protected bool $worn = false;
 
-    /**
-     * @var bool
-     */
     protected bool $consumable = false;
 
     /**
@@ -101,11 +76,14 @@ class Listitem extends AbstractEntity
      */
     public function getListing(): ?Listing
     {
+        if ($this->listing instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+            $this->listing = $this->listing->_loadRealInstance();
+        }
         return $this->listing;
     }
 
     /**
-     * @param Listing|null $listing
+     * @param Listing $listing
      */
     public function setListing(Listing $listing)
     {
@@ -117,6 +95,9 @@ class Listitem extends AbstractEntity
      */
     public function getCategory(): ?Category
     {
+        if ($this->category instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+            $this->category = $this->category->_loadRealInstance();
+        }
         return $this->category;
     }
 
@@ -133,6 +114,9 @@ class Listitem extends AbstractEntity
      */
     public function getShelf(): ?Shelf
     {
+        if ($this->shelf instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+            $this->shelf = $this->shelf->_loadRealInstance();
+        }
         return $this->shelf;
     }
 
@@ -177,9 +161,9 @@ class Listitem extends AbstractEntity
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getWeight(): int
+    public function getWeight(): float
     {
         return $this->weight;
     }

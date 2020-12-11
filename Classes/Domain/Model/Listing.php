@@ -21,13 +21,11 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Listing extends AbstractEntity
 {
-    /**
-     * @var string
-     */
     protected string $name = '';
 
     /**
      * @var FrontendUser
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $owner;
 
@@ -42,20 +40,6 @@ class Listing extends AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $listItems;
-
-    /**
-     * Constructs a new Listing
-     *
-     * @param string $name
-     * @param FrontendUser|null $owner
-     */
-    public function __construct(string $name = '', FrontendUser $owner = null)
-    {
-        $this->name = $name;
-        $this->owner = $owner;
-        $this->categories = new ObjectStorage();
-        $this->listItems = new ObjectStorage();
-    }
 
     public function initializeObject()
     {
@@ -84,6 +68,9 @@ class Listing extends AbstractEntity
      */
     public function getOwner(): ?FrontendUser
     {
+        if ($this->owner instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+            $this->owner = $this->owner->_loadRealInstance();
+        }
         return $this->owner;
     }
 
@@ -98,7 +85,7 @@ class Listing extends AbstractEntity
     /**
      * @return ObjectStorage
      */
-    public function getCategories()
+    public function getCategories(): ObjectStorage
     {
         return $this->categories;
     }
@@ -130,7 +117,7 @@ class Listing extends AbstractEntity
     /**
      * @return ObjectStorage
      */
-    public function getListItems()
+    public function getListItems(): ObjectStorage
     {
         return $this->listItems;
     }

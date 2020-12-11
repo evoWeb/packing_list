@@ -13,10 +13,12 @@ CREATE TABLE tx_packinglist_domain_model_category
 #
 CREATE TABLE tx_packinglist_domain_model_listing
 (
-    name       varchar(255)     DEFAULT ''  NOT NULL,
-    owner      int(10) unsigned DEFAULT '0' NOT NULL,
-    categories int(10) unsigned DEFAULT '0' NOT NULL,
-    list_items int(10) unsigned DEFAULT '0' NOT NULL
+    name       varchar(255)         DEFAULT ''  NOT NULL,
+    owner      int(10) unsigned     DEFAULT '0' NOT NULL,
+    categories int(10) unsigned     DEFAULT '0' NOT NULL,
+    list_items int(10) unsigned     DEFAULT '0' NOT NULL,
+    public     smallint(5) unsigned DEFAULT '0' NOT NULL,
+    shared     smallint(5) unsigned DEFAULT '0' NOT NULL
 );
 
 #
