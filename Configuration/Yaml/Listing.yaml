@@ -1,0 +1,32 @@
+routeEnhancers:
+  PackingListList:
+    type: Extbase
+    extension: PackingList
+    plugin: List
+    defaultController: 'Listing::list'
+    routes:
+      - routePath: '/'
+        _controller: 'Listing::list'
+      - routePath: '/page/{page}'
+        _controller: 'Listing::list'
+        _arguments:
+          page: 'currentPage'
+      - routePath: '/share/{listing}'
+        _controller: 'Listing::share'
+        _arguments:
+          listing: listing
+    defaults:
+      page: '0'
+    requirements:
+      listing: \d+
+      page: \d+
+    aspects:
+      listing:
+        type: PersistedPatternMapper
+        tableName: 'tx_packinglist_domain_model_listing'
+        routeFieldPattern: '^(?P<uid>.+)$'
+        routeFieldResult: '{uid}'
+      page:
+        type: StaticRangeMapper
+        start: '1'
+        end: '100'

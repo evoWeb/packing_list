@@ -1,24 +1,37 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:p="http://typo3.org/ns/Evoweb/PackingList/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
 
 <f:section name="content">
+    <p:cache model="{listing}" type="listing"/>
+
     <h3>{listing.name}</h3>
-    <ul>
-        <f:if condition="{listing.categories}">
-            <f:for each="{listing.categories}" as="category">
+
+    <f:if condition="{listing.categories}">
+        <f:for each="{listing.categories}" as="category">
+            <ul data-category="{category.uid}">
+                <p:cache model="{category}" type="category"/>
+
                 <li class="category">{category.name}</li>
                 <f:if condition="{category.listItems}">
                     <f:for each="{category.listItems}" as="listItem">
+                        <p:cache model="{listItem}" type="listitem"/>
+
                         <li class="item">{listItem.name}</li>
                     </f:for>
                 </f:if>
-            </f:for>
-        </f:if>
+            </ul>
+        </f:for>
+    </f:if>
 
+    <ul data-category="0">
         <f:if condition="{listing.listItems}">
             <li class="category"><f:translate id="unsorted_items"/></li>
             <f:for each="{listing.listItems}" as="listItem">
+                <p:cache model="{listItem}" type="listitem"/>
+
                 <li class="item">{listItem.name}</li>
             </f:for>
         </f:if>

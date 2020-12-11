@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Evoweb\PackingList\Domain\Repository\ListingRepository;
 
-class ListController extends ActionController
+class ListingController extends ActionController
 {
     protected ListingRepository $listingRepository;
 

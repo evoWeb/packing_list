@@ -1,5 +1,6 @@
 .idea
 .Build/Web/
+.Build/Sources/Scss/vendor/
 .Build/node_modules/
 .Build/yarn.lock
 var/

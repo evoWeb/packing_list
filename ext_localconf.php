@@ -7,10 +7,10 @@ call_user_func(function () {
         'PackingList',
         'List',
         [
-            \Evoweb\PackingList\Controller\ListController::class => 'list,share'
+            \Evoweb\PackingList\Controller\ListingController::class => 'list,share'
         ],
         [
-            \Evoweb\PackingList\Controller\ListController::class => 'add,edit'
+            \Evoweb\PackingList\Controller\ListingController::class => 'add,edit'
         ],
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );

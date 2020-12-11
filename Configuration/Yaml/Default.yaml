@@ -1,0 +1,2 @@
+imports:
+    - { resource: "EXT:packing_list/Configuration/Yaml/Listing.yaml" }
