@@ -1,2 +1,3 @@
 imports:
-    - { resource: "EXT:packing_list/Configuration/Yaml/Listing.yaml" }
+    - { resource: "EXT:packing_list/Configuration/Yaml/Display.yaml" }
+    - { resource: "EXT:packing_list/Configuration/Yaml/Edit.yaml" }

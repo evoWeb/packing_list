@@ -1,0 +1,36 @@
+routeEnhancers:
+  PackingListEdit:
+    type: Extbase
+    extension: PackingList
+    plugin: Edit
+    defaultController: 'Edit::list'
+    routes:
+      - routePath: '/'
+        _controller: 'Edit::list'
+      - routePath: '/page/{page}'
+        _controller: 'Edit::list'
+        _arguments:
+          page: 'currentPage'
+      - routePath: '/edit/{listing}'
+        _controller: 'Edit::edit'
+        _arguments:
+          listing: listing
+      - routePath: '/share/{listing}'
+        _controller: 'Edit::share'
+        _arguments:
+          listing: listing
+    defaults:
+      page: '0'
+    requirements:
+      listing: \d+
+      page: \d+
+    aspects:
+      listing:
+        type: PersistedPatternMapper
+        tableName: 'tx_packinglist_domain_model_listing'
+        routeFieldPattern: '^(?P<uid>.+)$'
+        routeFieldResult: '{uid}'
+      page:
+        type: StaticRangeMapper
+        start: '1'
+        end: '100'

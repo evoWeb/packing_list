@@ -23,6 +23,10 @@ class Listing extends AbstractEntity
 {
     protected string $name = '';
 
+    protected bool $public = false;
+
+    protected bool $shared = false;
+
     /**
      * @var FrontendUser
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
@@ -47,20 +51,34 @@ class Listing extends AbstractEntity
         $this->listItems = $this->listItems ?? new ObjectStorage();
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    public function getPublic(): bool
+    {
+        return $this->public;
+    }
+
+    public function setPublic(bool $public): void
+    {
+        $this->public = $public;
+    }
+
+    public function getShared(): bool
+    {
+        return $this->shared;
+    }
+
+    public function setShared(bool $shared): void
+    {
+        $this->shared = $shared;
     }
 
     /**

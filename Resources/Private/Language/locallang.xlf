@@ -3,8 +3,29 @@
 	<file t3:id="1607274967" source-language="en" datatype="plaintext" original="EXT:packing_list/Resources/Private/Language/locallang.xlf" date="2020-12-06T18:16:32Z" product-name="packing_list">
 		<header/>
 		<body>
+			<trans-unit id="login_required">
+				<source>You need to login to access your listings</source>
+			</trans-unit>
 			<trans-unit id="unsorted_items">
 				<source>Unsorted Items</source>
+			</trans-unit>
+			<trans-unit id="share_listing">
+				<source>Share Listing</source>
+			</trans-unit>
+			<trans-unit id="cancel">
+				<source>cancel</source>
+			</trans-unit>
+			<trans-unit id="share">
+				<source>share</source>
+			</trans-unit>
+			<trans-unit id="copy">
+				<source>copy</source>
+			</trans-unit>
+			<trans-unit id="share_message">
+				<source><![CDATA[Are you sure you want to share <b>%s</b>?<br/>Once you shared it, you can block sharing it in the edit form.]]></source>
+			</trans-unit>
+			<trans-unit id="copy_message">
+				<source><![CDATA[Your listing <b>%s</b> can be shared.<br/>Please click the copy button to copy the link to the clipboard.]]></source>
 			</trans-unit>
 		</body>
 	</file>

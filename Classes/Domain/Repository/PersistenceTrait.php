@@ -15,7 +15,10 @@ namespace Evoweb\PackingList\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-class ListingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+trait PersistenceTrait
 {
-    use PersistenceTrait;
+    public function persistAll()
+    {
+        $this->persistenceManager->persistAll();
+    }
 }

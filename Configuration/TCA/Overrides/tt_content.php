@@ -5,13 +5,21 @@ defined('TYPO3_MODE') or die();
 call_user_func(static function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'PackingList',
-        'List',
-        'Packing List',
+        'Display',
+        'LLL:EXT:packing_list/Resources/Private/Language/database.xlf:tt_content.packinglist_display',
         null,
         'lists'
     );
 
-    $GLOBALS['TCA']['tt_content']['types']['packinglist_list']['showitem'] = '
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        'PackingList',
+        'Edit',
+        'LLL:EXT:packing_list/Resources/Private/Language/database.xlf:tt_content.packinglist_edit',
+        null,
+        'lists'
+    );
+
+    $showItem = '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,
             --palette--;;headers,
@@ -33,4 +41,6 @@ call_user_func(static function () {
             rowDescription,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
     ';
+    $GLOBALS['TCA']['tt_content']['types']['packinglist_display']['showitem'] = $showItem;
+    $GLOBALS['TCA']['tt_content']['types']['packinglist_edit']['showitem'] = $showItem;
 });

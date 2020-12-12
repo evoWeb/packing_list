@@ -17,24 +17,48 @@ namespace Evoweb\PackingList\Controller;
 
 use Evoweb\PackingList\Domain\Model\Listing;
 use Evoweb\PackingList\Utility\Cache;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\UserAspect;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Evoweb\PackingList\Domain\Repository\ListingRepository;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-class ListingController extends ActionController
+class EditController extends ActionController
 {
+    protected Context $context;
+
     protected ListingRepository $listingRepository;
 
     public function __construct(
+        Context $context,
         ListingRepository $listingRepository
     ) {
+        $this->context = $context;
         $this->listingRepository = $listingRepository;
+    }
+
+    protected function resolveActionMethodName(): string
+    {
+        /** @var UserAspect $userAspect */
+        $userAspect = $this->context->getAspect('frontend.user');
+
+        $result = 'loginRequiredAction';
+        if ($userAspect->isLoggedIn()) {
+            $result = parent::resolveActionMethodName();
+        }
+        return $result;
     }
 
     public function initializeAction()
     {
         Cache::addCacheTagByControllerAction(['packing_list']);
+    }
+
+    public function loginRequiredAction(): string
+    {
+        return LocalizationUtility::translate('login_required', 'packing_list');
     }
 
     public function listAction(int $currentPage = 1): string
@@ -46,15 +70,38 @@ class ListingController extends ActionController
         return $this->view->render();
     }
 
-    public function shareAction(Listing $listing): string
+    public function editAction(Listing $listing): string
     {
         $this->view->assign('listing', $listing);
         return $this->view->render();
     }
 
+    public function shareAction(Listing $listing)
+    {
+        $listing->setShared(true);
+        $this->listingRepository->update($listing);
+        $this->listingRepository->persistAll();
+
+        $this->uriBuilder->setCreateAbsoluteUri(true);
+        $uri = $this->uriBuilder->uriFor(
+            'shared',
+            ['listing' => $listing->getUid()],
+            'Display',
+            'PackingList',
+            'Display'
+        );
+
+        echo \json_encode([
+            'href' => $uri,
+            'message' => LocalizationUtility::translate('copy_message', 'packing_list', [0 => $listing->getName()]),
+            'ok' => LocalizationUtility::translate('share', 'packing_list'),
+        ]);
+        die();
+    }
+
     protected function preparePagination(array $data, string $variableName, int $currentPage = 1): array
     {
-        $arrayPaginator = new ArrayPaginator($data, $currentPage, $this->settings['itemsPerPage'] ?? 8);
+        $arrayPaginator = new ArrayPaginator($data, $currentPage, intval($this->settings['itemsPerPage'] ?? 8));
         $pagination = new SimplePagination($arrayPaginator);
 
         return [

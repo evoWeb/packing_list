@@ -1,9 +1,3 @@
-<?php
-
-declare(strict_types=1);
-
-namespace Evoweb\PackingList\Domain\Repository;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,7 +9,6 @@ namespace Evoweb\PackingList\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-class ListingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
-{
-    use PersistenceTrait;
+declare interface Window {
+    locations: Array<any>
 }

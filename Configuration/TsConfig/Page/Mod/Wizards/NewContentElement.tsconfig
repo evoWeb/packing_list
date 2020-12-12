@@ -1,13 +1,21 @@
 mod.wizards.newContentElement.wizardItems.special {
   elements {
-    packinglist_list {
+    packinglist_display {
       iconIdentifier = content-listgroup
-      title = LLL:EXT:packing_list/Resources/Private/Language/Database.xlf:tt_content.CType.packinglist_list.title
-      description = LLL:EXT:packing_list/Resources/Private/Language/Database.xlf:tt_content.CType.packinglist_list.description
+      title = LLL:EXT:packing_list/Resources/Private/Language/database.xlf:tt_content.packinglist_display
+      description = LLL:EXT:packing_list/Resources/Private/Language/database.xlf:tt_content.packinglist_display.description
       tt_content_defValues {
-        CType = packinglist_list
+        CType = packinglist_display
+      }
+    }
+    packinglist_edit {
+      iconIdentifier = content-listgroup
+      title = LLL:EXT:packing_list/Resources/Private/Language/database.xlf:tt_content.packinglist_edit
+      description = LLL:EXT:packing_list/Resources/Private/Language/database.xlf:tt_content.packinglist_edit.description
+      tt_content_defValues {
+        CType = packinglist_edit
       }
     }
   }
-  show := addToList(packinglist_list)
+  show := addToList(packinglist_display, packinglist_edit)
 }

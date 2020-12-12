@@ -1,18 +1,22 @@
 routeEnhancers:
-  PackingListList:
+  PackingListDisplay:
     type: Extbase
     extension: PackingList
-    plugin: List
-    defaultController: 'Listing::list'
+    plugin: Display
+    defaultController: 'Display::list'
     routes:
       - routePath: '/'
-        _controller: 'Listing::list'
+        _controller: 'Display::list'
       - routePath: '/page/{page}'
-        _controller: 'Listing::list'
+        _controller: 'Display::list'
         _arguments:
           page: 'currentPage'
-      - routePath: '/share/{listing}'
-        _controller: 'Listing::share'
+      - routePath: '/show/{listing}'
+        _controller: 'Display::show'
+        _arguments:
+          listing: listing
+      - routePath: '/shared/{listing}'
+        _controller: 'Display::shared'
         _arguments:
           listing: listing
     defaults:

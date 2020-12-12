@@ -11,7 +11,7 @@
         <f:for each="{paginator.paginatedItems}" as="listing">
             <p:cache model="{listing}" type="listing"/>
             <li>
-                <f:link.action action="share" arguments="{listing: listing.uid}">{listing.name}</f:link.action>
+                <f:link.action action="show" arguments="{listing: listing.uid}">{listing.name}</f:link.action>
             </li>
         </f:for>
     </f:if>

@@ -1,0 +1,53 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:p="http://typo3.org/ns/Evoweb/PackingList/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="content">
+
+    <ul>
+    <f:if condition="{listings}">
+        <f:for each="{paginator.paginatedItems}" as="listing">
+            <f:render section="listing" arguments="{listing: listing}"/>
+        </f:for>
+    </f:if>
+    </ul>
+
+    <f:render partial="Utility/Paginator.html" arguments="{pagination: pagination, pages: pages, paginator: paginator}" />
+
+    <f:render section="shareModal"/>
+</f:section>
+
+<f:section name="listing">
+    <p:cache model="{listing}" type="listing"/>
+    <li>
+        {listing.name}
+        <f:link.action action="edit" arguments="{listing: listing.uid}"><i class="material-icons tiny">edit</i></f:link.action>
+        <f:if condition="{listing.shared}">
+            <f:then><a class="share-link"
+                       href="{f:uri.action(action: 'shared', controller: 'Display', absolute: 1, arguments: { listing: listing.uid })}"
+                       data-message="{f:translate(id: 'copy_message', arguments: {0: listing.name}) -> f:format.raw()}"
+                       data-ok="{f:translate(id: 'share')}"><i class="material-icons tiny">share</i></a></f:then>
+            <f:else><a href="#" class="share-link"
+                       data-uri="{f:uri.action(action: 'share', controller: 'Edit', absolute: 1, arguments: { listing: listing.uid })}"
+                       data-message="{f:translate(id: 'share_message', arguments: {0: listing.name}) -> f:format.raw()}"
+                       data-ok="{f:translate(id: 'share')}"><i class="material-icons tiny">share</i></a></f:else>
+        </f:if>
+    </li>
+</f:section>
+
+<f:section name="shareModal">
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <h4><f:translate id="share_listing"/></h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn red"><f:translate id="cancel"/></a>
+            <a href="#!" class="modal-close btn green" data-action="share"></a>
+        </div>
+    </div>
+</f:section>
+
+</html>
