@@ -1,10 +1,14 @@
-const browserSync = require('browser-sync').create();
-const { paths } = require('../build-config');
+import browserSync from 'browser-sync';
+
+import {paths} from '../build-config';
+
+const browser = browserSync.create();
+
 /*
 * @Desc     Init BorwserSync with UI
 * */
 let browserSyncInit = () => {
-  browserSync.init({
+  browser.init({
     injectChanges: true,
     server: {
       baseDir: paths.dest
@@ -17,7 +21,7 @@ let browserSyncInit = () => {
 * @Desc     Reload BorwserSync on change @watch-task
 * */
 let browserSyncReload = () => {
-  browserSync.reload();
+  browser.reload();
 }
 
 module.exports = { browserSyncInit, browserSyncReload };

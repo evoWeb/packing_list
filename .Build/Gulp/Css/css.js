@@ -8,13 +8,12 @@ import cssnano from 'gulp-cssnano';
 import changed from 'gulp-changed';
 import browserSync from 'browser-sync';
 
-const { tasks } = require('../../build-config');
+import {tasks} from '../../build-config';
 
-browserSync.create();
+const browser = browserSync.create();
 
 /*
-* @Desc     copy vendor css files from node_modules to src,
-*           to import in main.scss
+* @Desc     copy vendor css files from node_modules to src, to import in main.scss
 * */
 let copyVendorCss = () => {
   if (tasks.copyVendorCss) {
@@ -32,12 +31,11 @@ let copyVendorCss = () => {
 
 /*
 * @Desc     converts scss to css and copy to public
-* @Series   copyVendorCss {function}
 * */
 let scss = () => {
-  return src(tasks.scss.src)
+  return src(tasks.scss.src, {base: tasks.scss.base})
     .pipe(sourcemaps.init())
-    .pipe(changed(tasks.scss.dest))
+    .pipe(changed(tasks.scss.src))
     .pipe(sass({
         includePaths: require('node-normalize-scss').includePaths
       }
@@ -52,7 +50,7 @@ let scss = () => {
     .pipe(cssnano())
     .pipe(sourcemaps.write('./'))
     .pipe(dest(tasks.scss.dest))
-    .pipe(browserSync.stream());
+    .pipe(browser.stream());
 }
 
 module.exports = { copyVendorCss, scss };

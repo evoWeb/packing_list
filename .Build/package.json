@@ -12,6 +12,7 @@
 		"yarn": "^1.22.0"
 	},
 	"dependencies": {
+		"material-design-icons-iconfont": "^6.1.0",
 		"materialize-css": "^1.0.0-rc.2"
 	},
 	"devDependencies": {
@@ -20,8 +21,8 @@
 		"@babel/preset-env": "^7.12.10",
 		"@babel/register": "^7.12.10",
 		"autoprefixer": "^9.7.6",
-		"browserify": "^16.5.0",
 		"browser-sync": "^2.26.7",
+		"browserify": "^16.5.0",
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^6.1.0",
 		"gulp-babel": "^8.0.0",
@@ -31,8 +32,8 @@
 		"gulp-rename": "^2.0.0",
 		"gulp-sass": "^4.1.0",
 		"gulp-sourcemaps": "^2.6.5",
-		"gulp-typescript": "^5.0.1",
 		"gulp-terser": "^1.2.0",
+		"gulp-typescript": "^5.0.1",
 		"node-normalize-scss": "^8.1.2",
 		"sass": "^1.22.10",
 		"tsify": "^4.0.1",

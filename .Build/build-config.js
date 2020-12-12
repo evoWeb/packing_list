@@ -8,8 +8,8 @@ const
 let tasks = {
   scss: {
     src: `${paths.src}/Scss/*.scss`,
-    base: `${paths.src}/Scss/*.scss`,
-    dest: `${paths.dest}/Stylesheets/`
+    base: `${paths.src}/Scss`,
+    dest: `${paths.dest}/Stylesheets`
   },
   copyVendorScss: {
     // Add path/file to include to css
@@ -18,11 +18,12 @@ let tasks = {
       './node_modules/materialize-css/sass/*/**.scss',
       './node_modules/materialize-css/sass/*/*/**.scss',
     ],
-    dest: `${paths.src}/Scss/vendor/`
+    dest: `${paths.src}/Scss/vendor`
   },
   babel: {
     src: `${paths.src}/TypeScript/packing_list.ts`,
-    dest: `${paths.dest}/JavaScript/`
+    dest: `${paths.dest}/JavaScript`,
+    source: 'packing_list.js'
   },
   bundle: {
     // Add path/file to include to bundle
@@ -37,8 +38,13 @@ let tasks = {
     dest: `${paths.dest}/Images`
   },
   font: {
-    src: `${paths.src}/Font/*.*`,
-    dest: `${paths.dest}/Font`
+    src: [
+      './node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot',
+      './node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf',
+      './node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff',
+      './node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2',
+    ],
+    dest: `${paths.dest}/Fonts`
   },
 };
 

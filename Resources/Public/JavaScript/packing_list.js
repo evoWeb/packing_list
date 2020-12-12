@@ -3,9 +3,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var PackingList = /** @class */ (function () {
     function PackingList() {
+        this.options = {};
     }
     return PackingList;
 }());
 exports.default = PackingList;
 
 },{}]},{},[1])
+

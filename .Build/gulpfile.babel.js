@@ -1,6 +1,7 @@
 'use strict';
 
 import {parallel, series, watch} from 'gulp';
+
 import bundle from './Gulp/JavaScript/bundle-js';
 import babel from './Gulp/JavaScript/babel-ts';
 import {browserSyncInit, browserSyncReload} from './Gulp/browserSync';
@@ -20,14 +21,16 @@ exports.babel = parallel(babel);
 exports.js = series(bundle, babel);
 exports.css = series(copyVendorCss, scss);
 exports.assets = parallel(image, font);
-exports.default = series(
-  exports.assets,
-  exports.css,
-  exports.js
-);
+
 exports.watch = series(
   exports.assets,
   exports.css,
   exports.js,
   parallel(watchFiles, browserSyncInit)
+);
+
+exports.default = series(
+  exports.assets,
+  exports.css,
+  exports.js
 );

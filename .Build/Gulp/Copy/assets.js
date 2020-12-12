@@ -1,9 +1,6 @@
-let {
-  src,
-  dest
-} = require('gulp');
+import {src, dest} from 'gulp';
 
-const { tasks } = require('../../build-config');
+import {tasks} from '../../build-config';
 
 /*
 * @Desc     Copy images to public

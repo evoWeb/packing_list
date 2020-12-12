@@ -1,11 +1,8 @@
-let {
-  src,
-  dest
-} = require('gulp');
+import {src, dest} from 'gulp';
 
-const concat = require('gulp-concat');
+import concat from 'gulp-concat';
 
-const { tasks } = require('../../build-config');
+import {tasks} from '../../build-config';
 
 /*
 * @Desc     bundles JavaScript files and copy to public
