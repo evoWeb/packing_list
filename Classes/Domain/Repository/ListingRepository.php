@@ -15,7 +15,19 @@ namespace Evoweb\PackingList\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
+
 class ListingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     use PersistenceTrait;
+
+    public function findAllPublic()
+    {
+        /** @var Query $query */
+        $query = $this->createQuery();
+        $query->matching(
+            $query->equals('public', 1)
+        );
+        return $query->execute();
+    }
 }

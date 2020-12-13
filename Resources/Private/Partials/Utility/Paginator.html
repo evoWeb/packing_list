@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
+<f:if condition="{paginator.numberOfPages} > 1">
 <ul class="pagination">
     <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
         <f:then>
@@ -45,5 +46,6 @@
         </f:else>
     </f:if>
 </ul>
+</f:if>
 
 </html>
