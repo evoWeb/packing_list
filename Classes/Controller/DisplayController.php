@@ -17,10 +17,10 @@ namespace Evoweb\PackingList\Controller;
 
 use Evoweb\PackingList\Domain\Model\Listing;
 use Evoweb\PackingList\Utility\Cache;
-use Evoweb\PackingList\Pagination\QueryPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Evoweb\PackingList\Domain\Repository\ListingRepository;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class DisplayController extends ActionController
@@ -61,7 +61,7 @@ class DisplayController extends ActionController
 
     protected function preparePagination(QueryResultInterface $query, string $variableName, int $currentPage = 1): array
     {
-        $arrayPaginator = new QueryPaginator($query, $currentPage, intval($this->settings['itemsPerPage'] ?? 10));
+        $arrayPaginator = new QueryResultPaginator($query, $currentPage, intval($this->settings['itemsPerPage'] ?? 10));
         $pagination = new SimplePagination($arrayPaginator);
 
         return [
