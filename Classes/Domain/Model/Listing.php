@@ -30,7 +30,7 @@ class Listing extends AbstractEntity
 
     /**
      * @var FrontendUser
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @Lazy
      */
     protected $owner;
 
