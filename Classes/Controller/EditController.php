@@ -16,6 +16,7 @@ namespace Evoweb\PackingList\Controller;
  */
 
 use Evoweb\PackingList\Domain\Model\Listing;
+use Evoweb\PackingList\Domain\Repository\ShelfRepository;
 use Evoweb\PackingList\Utility\Cache;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\UserAspect;
@@ -32,12 +33,16 @@ class EditController extends ActionController
 
     protected ListingRepository $listingRepository;
 
+    protected ShelfRepository $shelfRepository;
+
     public function __construct(
         Context $context,
-        ListingRepository $listingRepository
+        ListingRepository $listingRepository,
+        ShelfRepository $shelfRepository
     ) {
         $this->context = $context;
         $this->listingRepository = $listingRepository;
+        $this->shelfRepository = $shelfRepository;
     }
 
     protected function resolveActionMethodName(): string
@@ -54,19 +59,25 @@ class EditController extends ActionController
 
     public function initializeAction()
     {
-        Cache::addCacheTagByControllerAction(['packing_list']);
+        Cache::addCacheTags(['packing_list_edit']);
     }
 
     public function loginRequiredAction(): string
     {
-        return LocalizationUtility::translate('login_required', 'packing_list');
+        return $this->view->render();
     }
 
     public function listAction(int $currentPage = 1): string
     {
-        $listings = $this->listingRepository->findAll();
+        /** @var UserAspect $userAspect */
+        $userAspect = $this->context->getAspect('frontend.user');
+        Cache::addCacheTags(['packing_edit_list_' . $userAspect->get('id')]);
+
+        $listings = $this->listingRepository->findByOwner($userAspect->get('id'));
+        $shelf = $this->shelfRepository->findOneByOwner($userAspect->get('id'));
 
         $this->view->assignMultiple($this->preparePagination($listings, 'listings', $currentPage));
+        $this->view->assign('shelf', $shelf);
 
         return $this->view->render();
     }
@@ -83,14 +94,22 @@ class EditController extends ActionController
         $this->listingRepository->update($listing);
         $this->listingRepository->persistAll();
 
-        $this->uriBuilder->setCreateAbsoluteUri(true);
-        $uri = $this->uriBuilder->uriFor(
-            'shared',
-            ['listing' => $listing->getUid()],
-            'Display',
-            'PackingList',
-            'Display'
-        );
+        /** @var UserAspect $userAspect */
+        $userAspect = $this->context->getAspect('frontend.user');
+        Cache::flushByTags([
+            'packing_edit_list_' . $userAspect->get('id'),
+            'tx_packinglist_domain_model_listing_' . $listing->getUid()
+        ]);
+
+        $uri = $this->uriBuilder
+            ->setCreateAbsoluteUri(true)
+            ->uriFor(
+                'shared',
+                ['listing' => $listing->getUid()],
+                'Display',
+                'PackingList',
+                'Display'
+            );
 
         echo \json_encode([
             'href' => $uri,

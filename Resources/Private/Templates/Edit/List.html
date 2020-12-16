@@ -2,20 +2,49 @@
       xmlns:p="http://typo3.org/ns/Evoweb/PackingList/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<f:layout name="Default" />
+<f:layout name="TwoColumn" />
 
-<f:section name="content">
-
+<f:section name="sidebar">
+    <div class="row">
+        <h5 class="col s4"><f:translate id="listings"/></h5>
+        <div class="col s8">
+            <a class="right" href="#"><i class="material-icons">add</i> <f:translate id="new_listing"/></a>
+        </div>
+    </div>
     <ul>
-    <f:if condition="{listings}">
-        <f:for each="{paginator.paginatedItems}" as="listing">
-            <f:render section="listing" arguments="{listing: listing}"/>
-        </f:for>
-    </f:if>
+        <f:if condition="{listings}">
+            <f:for each="{listings}" as="listing">
+                <f:render section="listing" arguments="{listing: listing}"/>
+            </f:for>
+        </f:if>
     </ul>
 
-    <f:render partial="Utility/Paginator.html" arguments="{pagination: pagination, pages: pages, paginator: paginator}" />
 
+    <div class="row">
+        <h5 class="col s12"><f:translate id="listitem"/></h5>
+        <div class="col s12"><input id="item_search" type="text" placeholder=""/></div>
+    </div>
+    <ul>
+        <f:if condition="{shelf.listItems}">
+            <f:for each="{shelf.listItems}" as="listItem">
+                <li>
+                    <p:cache model="{listItem}" type="listitem"/>
+
+                    <f:if condition="{listItem.url}">
+                        <f:then><a href="{listItem.url}">{listItem.name}</a></f:then>
+                        <f:else>{listItem.name}</f:else>
+                    </f:if>
+                    <span class="right" data-unit="{listItem.unit}">
+                        {listItem.weight}<br/>
+                        <f:link.action action="deleteItem" arguments="{listItem: listItem.uid}"><i class="material-icons tiny right">close</i></f:link.action>
+                    </span>
+                </li>
+            </f:for>
+        </f:if>
+    </ul>
+</f:section>
+
+<f:section name="content">
     <f:render section="shareModal"/>
 </f:section>
 
@@ -23,17 +52,19 @@
     <p:cache model="{listing}" type="listing"/>
     <li>
         {listing.name}
-        <f:link.action action="edit" arguments="{listing: listing.uid}"><i class="material-icons tiny">edit</i></f:link.action>
         <f:if condition="{listing.shared}">
             <f:then><a class="share-link"
                        href="{f:uri.action(action: 'shared', controller: 'Display', absolute: 1, arguments: { listing: listing.uid })}"
                        data-message="{f:translate(id: 'copy_message', arguments: {0: listing.name}) -> f:format.raw()}"
-                       data-ok="{f:translate(id: 'share')}"><i class="material-icons tiny">share</i></a></f:then>
+                       data-ok="{f:translate(id: 'share')}"><i class="material-icons tiny right">share</i></a></f:then>
             <f:else><a href="#" class="share-link"
                        data-uri="{f:uri.action(action: 'share', controller: 'Edit', absolute: 1, arguments: { listing: listing.uid })}"
                        data-message="{f:translate(id: 'share_message', arguments: {0: listing.name}) -> f:format.raw()}"
-                       data-ok="{f:translate(id: 'share')}"><i class="material-icons tiny">share</i></a></f:else>
+                       data-ok="{f:translate(id: 'share')}"><i class="material-icons tiny right">share</i></a></f:else>
         </f:if>
+        <f:link.action action="copy" arguments="{listing: listing.uid}"><i class="material-icons tiny right">content_copy</i></f:link.action>
+        <f:link.action action="delete" arguments="{listing: listing.uid}"><i class="material-icons tiny right">close</i></f:link.action>
+        <f:link.action action="edit" arguments="{listing: listing.uid}"><i class="material-icons tiny right">edit</i></f:link.action>
     </li>
 </f:section>
 

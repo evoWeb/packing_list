@@ -35,12 +35,12 @@ class DisplayController extends ActionController
 
     public function initializeAction()
     {
-        Cache::addCacheTagByControllerAction(['packing_display']);
+        Cache::addCacheTags(['packing_list_display']);
     }
 
     public function listAction(int $currentPage = 1): string
     {
-        $listings = $this->listingRepository->findAllPublic();
+        $listings = $this->listingRepository->findByPublic();
 
         $this->view->assignMultiple($this->preparePagination($listings, 'listings', $currentPage));
 

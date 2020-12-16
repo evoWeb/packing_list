@@ -17,10 +17,10 @@ call_user_func(function () {
         'PackingList',
         'Edit',
         [
-            \Evoweb\PackingList\Controller\EditController::class => 'list,edit,share'
+            \Evoweb\PackingList\Controller\EditController::class => 'list,edit,share,copy,import'
         ],
         [
-            \Evoweb\PackingList\Controller\EditController::class => 'edit,share'
+            \Evoweb\PackingList\Controller\EditController::class => 'edit,share,copy,import'
         ],
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );

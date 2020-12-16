@@ -3,6 +3,12 @@
 	<file source-language="en" datatype="plaintext" original="EXT:packing_list/Resources/Private/Language/locallang.xlf" date="2020-12-06T18:16:32Z" product-name="packing_list">
 		<header/>
 		<body>
+			<trans-unit id="listings">
+				<source>Listings</source>
+			</trans-unit>
+			<trans-unit id="listitem">
+				<source>List Item</source>
+			</trans-unit>
 			<trans-unit id="login_required">
 				<source>You need to login to access your listings</source>
 			</trans-unit>
@@ -17,6 +23,9 @@
 			</trans-unit>
 			<trans-unit id="share">
 				<source>share</source>
+			</trans-unit>
+			<trans-unit id="new_listing">
+				<source>new listing</source>
 			</trans-unit>
 			<trans-unit id="copy">
 				<source>copy</source>

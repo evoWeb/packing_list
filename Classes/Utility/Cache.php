@@ -15,11 +15,33 @@ namespace Evoweb\PackingList\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class Cache
 {
-    public static function addCacheTagByControllerAction(array $tags)
+    protected static function getCache(): FrontendInterface
+    {
+        /** @var FrontendInterface $cache */
+        static $cache = null;
+
+        if ($cache === null) {
+            /** @var CacheManager $cacheManager */
+            $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
+            $cache = $cacheManager->getCache('pages');
+        }
+
+        return $cache;
+    }
+
+    public static function flushByTags(array $tags)
+    {
+        self::getCache()->flushByTags($tags);
+    }
+
+    public static function addCacheTags(array $tags)
     {
         self::getTypoScriptFrontendController()->addCacheTags($tags);
     }

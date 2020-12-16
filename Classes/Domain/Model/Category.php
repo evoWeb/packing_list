@@ -29,7 +29,7 @@ class Category extends AbstractEntity
     protected $listing;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\PackingList\Domain\Model\Listitem>
+     * @var ObjectStorage<Listitem>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected ObjectStorage $listItems;

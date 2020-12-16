@@ -15,29 +15,26 @@ namespace Evoweb\PackingList\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\PackingList\Domain\Model\Shelf;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 
-class ListingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class ShelfRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     use PersistenceTrait;
 
-    public function findByPublic()
-    {
-        /** @var Query $query */
-        $query = $this->createQuery();
-        $query->matching(
-            $query->equals('public', 1)
-        );
-        return $query->execute();
-    }
-
-    public function findByOwner(int $owner)
+    public function findOneByOwner(int $owner): Shelf
     {
         /** @var Query $query */
         $query = $this->createQuery();
         $query->matching(
             $query->equals('owner', $owner)
         );
-        return $query->execute();
+
+        /** @var Shelf $shelf */
+        $shelf = $query
+            ->execute()
+            ->getFirst();
+
+        return $shelf;
     }
 }

@@ -4,6 +4,15 @@
 <f:asset.script identifier="packinglist_bundle" src="EXT:packing_list/Resources/Public/JavaScript/bundle.js" />
 <f:asset.script identifier="packinglist_app" src="EXT:packing_list/Resources/Public/JavaScript/packing_list.js" />
 
-<f:render section="content" />
+<div class="container">
+    <div class="row">
+        <div class="col s4">
+            <f:render section="sidebar" optional="true"/>
+        </div>
+        <div class="col s8">
+            <f:render section="content" />
+        </div>
+    </div>
+</div>
 
 </html>
