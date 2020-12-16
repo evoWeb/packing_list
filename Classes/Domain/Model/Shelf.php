@@ -15,6 +15,7 @@ namespace Evoweb\PackingList\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -23,13 +24,13 @@ class Shelf extends AbstractEntity
 {
     /**
      * @var FrontendUser
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @Lazy
      */
     protected $owner;
 
     /**
      * @var ObjectStorage<Listitem>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @Lazy
      */
     protected ObjectStorage $listItems;
 

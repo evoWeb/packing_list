@@ -15,6 +15,7 @@ namespace Evoweb\PackingList\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Listitem extends AbstractEntity
@@ -23,19 +24,19 @@ class Listitem extends AbstractEntity
 
     /**
      * @var Listing
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @Lazy
      */
     protected $listing;
 
     /**
      * @var Category
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @Lazy
      */
     protected $category;
 
     /**
      * @var Shelf
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @Lazy
      */
     protected $shelf;
 
