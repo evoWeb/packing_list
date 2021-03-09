@@ -17,8 +17,9 @@ namespace Evoweb\PackingList\Domain\Repository;
 
 use Evoweb\PackingList\Domain\Model\Shelf;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class ShelfRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class ShelfRepository extends Repository
 {
     use PersistenceTrait;
 

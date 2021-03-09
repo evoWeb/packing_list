@@ -16,8 +16,9 @@ namespace Evoweb\PackingList\Domain\Repository;
  */
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class ListingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class ListingRepository extends Repository
 {
     use PersistenceTrait;
 

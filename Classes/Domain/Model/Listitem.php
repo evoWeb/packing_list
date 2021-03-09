@@ -15,8 +15,8 @@ namespace Evoweb\PackingList\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 
 class Listitem extends AbstractEntity
 {
@@ -24,19 +24,19 @@ class Listitem extends AbstractEntity
 
     /**
      * @var Listing
-     * @Lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $listing;
 
     /**
      * @var Category
-     * @Lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $category;
 
     /**
      * @var Shelf
-     * @Lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $shelf;
 
@@ -56,202 +56,130 @@ class Listitem extends AbstractEntity
 
     protected bool $consumable = false;
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return Listing
-     */
     public function getListing(): ?Listing
     {
-        if ($this->listing instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+        if ($this->listing instanceof LazyLoadingProxy) {
             $this->listing = $this->listing->_loadRealInstance();
         }
         return $this->listing;
     }
 
-    /**
-     * @param Listing $listing
-     */
     public function setListing(Listing $listing)
     {
         $this->listing = $listing;
     }
 
-    /**
-     * @return Category
-     */
     public function getCategory(): ?Category
     {
-        if ($this->category instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+        if ($this->category instanceof LazyLoadingProxy) {
             $this->category = $this->category->_loadRealInstance();
         }
         return $this->category;
     }
 
-    /**
-     * @param Category $category
-     */
     public function setCategory(Category $category)
     {
         $this->category = $category;
     }
 
-    /**
-     * @return Shelf
-     */
     public function getShelf(): ?Shelf
     {
-        if ($this->shelf instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+        if ($this->shelf instanceof LazyLoadingProxy) {
             $this->shelf = $this->shelf->_loadRealInstance();
         }
         return $this->shelf;
     }
 
-    /**
-     * @param Shelf $shelf
-     */
     public function setShelf(Shelf $shelf)
     {
         $this->shelf = $shelf;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     */
     public function setDescription(string $description)
     {
         $this->description = $description;
     }
 
-    /**
-     * @return int
-     */
     public function getQuantity(): int
     {
         return $this->quantity;
     }
 
-    /**
-     * @param int $quantity
-     */
     public function setQuantity(int $quantity)
     {
         $this->quantity = $quantity;
     }
 
-    /**
-     * @return float
-     */
     public function getWeight(): float
     {
         return $this->weight;
     }
 
-    /**
-     * @param int $weight
-     */
     public function setWeight(int $weight)
     {
         $this->weight = $weight;
     }
 
-    /**
-     * @return string
-     */
     public function getUnit(): string
     {
         return $this->unit;
     }
 
-    /**
-     * @param string $unit
-     */
     public function setUnit(string $unit)
     {
         $this->unit = $unit;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     */
     public function setUrl(string $url)
     {
         $this->url = $url;
     }
 
-    /**
-     * @return float
-     */
     public function getPrice(): float
     {
         return $this->price;
     }
 
-    /**
-     * @param float $price
-     */
     public function setPrice(float $price)
     {
         $this->price = $price;
     }
 
-    /**
-     * @return bool
-     */
     public function isWorn(): bool
     {
         return $this->worn;
     }
 
-    /**
-     * @param bool $worn
-     */
     public function setWorn(bool $worn)
     {
         $this->worn = $worn;
     }
 
-    /**
-     * @return bool
-     */
     public function isConsumable(): bool
     {
         return $this->consumable;
     }
 
-    /**
-     * @param bool $consumable
-     */
     public function setConsumable(bool $consumable)
     {
         $this->consumable = $consumable;

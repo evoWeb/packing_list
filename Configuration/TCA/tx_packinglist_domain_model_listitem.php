@@ -99,7 +99,8 @@ return [
                 'fieldControl' => [
                     'linkPopup' => [
                         'options' => [
-                            'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
+                            'title' =>
+                                'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
                         ],
                     ],
                 ],

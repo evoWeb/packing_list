@@ -12,8 +12,7 @@ $EM_CONF['packing_list'] = [
     'version' => '0.0.1',
     'constraints' => [
         'depends' => [
-            'php' => '7.2.0-0.0.0',
-            'typo3' => '10.4.0-10.4.99',
+            'typo3' => '10.4.0-11.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],

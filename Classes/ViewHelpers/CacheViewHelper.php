@@ -18,8 +18,10 @@ namespace Evoweb\PackingList\ViewHelpers;
 use Evoweb\PackingList\Utility\Cache;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class CacheViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+class CacheViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
@@ -74,7 +76,7 @@ class CacheViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelp
         $uid = [];
         if (is_array($model) && isset($model['uid'])) {
             $uid[] = $model['uid'];
-        } elseif (is_object($model) && $model instanceof \TYPO3\CMS\Extbase\DomainObject\AbstractEntity) {
+        } elseif (is_object($model) && $model instanceof AbstractEntity) {
             if ($model->_hasProperty('uid')) {
                 $uid[] = $model->getUid();
             }

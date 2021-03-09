@@ -15,9 +15,9 @@ namespace Evoweb\PackingList\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Listing extends AbstractEntity
@@ -30,7 +30,7 @@ class Listing extends AbstractEntity
 
     /**
      * @var FrontendUser
-     * @Lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $owner;
 
@@ -82,84 +82,54 @@ class Listing extends AbstractEntity
         $this->shared = $shared;
     }
 
-    /**
-     * @return FrontendUser
-     */
     public function getOwner(): ?FrontendUser
     {
-        if ($this->owner instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+        if ($this->owner instanceof LazyLoadingProxy) {
             $this->owner = $this->owner->_loadRealInstance();
         }
         return $this->owner;
     }
 
-    /**
-     * @param FrontendUser $owner
-     */
     public function setOwner(FrontendUser $owner)
     {
         $this->owner = $owner;
     }
 
-    /**
-     * @return ObjectStorage
-     */
     public function getCategories(): ObjectStorage
     {
         return $this->categories;
     }
 
-    /**
-     * @param ObjectStorage $categories
-     */
     public function setCategories(ObjectStorage $categories)
     {
         $this->categories = $categories;
     }
 
-    /**
-     * @param Category $category
-     */
     public function addCategory(Category $category)
     {
         $this->categories->attach($category);
     }
 
-    /**
-     * @param Category $category
-     */
     public function removeCategory(Category $category)
     {
         $this->categories->detach($category);
     }
 
-    /**
-     * @return ObjectStorage
-     */
     public function getListItems(): ObjectStorage
     {
         return $this->listItems;
     }
 
-    /**
-     * @param ObjectStorage $listItems
-     */
     public function setListItems(ObjectStorage $listItems)
     {
         $this->listItems = $listItems;
     }
 
-    /**
-     * @param Listitem $listItems
-     */
     public function addListItem(Listitem $listItems)
     {
         $this->listItems->attach($listItems);
     }
 
-    /**
-     * @param Listitem $listItems
-     */
     public function removeListItem(Listitem $listItems)
     {
         $this->listItems->detach($listItems);

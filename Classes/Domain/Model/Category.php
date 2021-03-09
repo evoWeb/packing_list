@@ -15,8 +15,8 @@ namespace Evoweb\PackingList\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Category extends AbstractEntity
@@ -25,7 +25,7 @@ class Category extends AbstractEntity
 
     /**
      * @var Listing
-     * @Lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $listing;
 
@@ -40,70 +40,46 @@ class Category extends AbstractEntity
         $this->listItems = $this->listItems ?? new ObjectStorage();
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return Listing
-     */
     public function getListing(): ?Listing
     {
-        if ($this->listing instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+        if ($this->listing instanceof LazyLoadingProxy) {
             $this->listing = $this->listing->_loadRealInstance();
         }
         return $this->listing;
     }
 
-    /**
-     * @param Listing $listing
-     */
     public function setListing(Listing $listing)
     {
         $this->listing = $listing;
     }
 
-    /**
-     * @return ObjectStorage
-     */
     public function getListItems(): ObjectStorage
     {
         return $this->listItems;
     }
 
-    /**
-     * @param ObjectStorage $listItems
-     */
     public function setListItems(ObjectStorage $listItems)
     {
         $this->listItems = $listItems;
     }
 
-    /**
-     * @param Listitem $listItems
-     */
-    public function addListItem(Listitem $listItems)
+    public function addListItem(Listitem $listItem)
     {
-        $this->listItems->attach($listItems);
+        $this->listItems->attach($listItem);
     }
 
-    /**
-     * @param Listitem $listItems
-     */
-    public function removeListItem(Listitem $listItems)
+    public function removeListItem(Listitem $listItem)
     {
-        $this->listItems->detach($listItems);
+        $this->listItems->detach($listItem);
     }
 }
