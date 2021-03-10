@@ -27,11 +27,6 @@
 			"Evoweb\\PackingList\\": "Classes/"
 		}
 	},
-	"autoload-dev": {
-		"psr-4": {
-			"Evoweb\\PackingList\\Tests\\": "Tests/"
-		}
-	},
 
 	"config": {
 		"vendor-dir": ".Build/Web/vendor"
@@ -45,6 +40,13 @@
 	},
 
 	"scripts": {
-		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/packing_list"
+		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/packing_list",
+		"prepare-release": [
+			"rm -rf .Build",
+			"rm -rf .github",
+			"rm .gitattributes",
+			"rm .gitignore",
+			"sed -i \"s/version' => '.*'/version' => '$(echo ${GITHUB_REF} | cut -d / -f 3)'/\" ext_emconf.php\n"
+		]
 	}
 }
